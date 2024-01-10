@@ -1,0 +1,2 @@
+21:14:26 DEBUG Selenium Manager binary found at: C:\Users\vikam\PycharmProjects\pythonProject5\.venv\Lib\site-packages\selenium\webdriver\common\windows\selenium-manager.exe
+21:14:26 DEBUG Executing process: C:\Users\vikam\PycharmProjects\pythonProject5\.venv\Lib\site-packages\selenium\webdriver\common\windows\selenium-manager.exe --browser firefox --debug --output json
