@@ -2,10 +2,11 @@ from selenium.webdriver.common.by import By
 
 from POM.lib.helpers import Helpers
 from POM.lib.assertions import assert_that
-from testing_data.test_data import base_url
 
 
 class Reports(Helpers):
+    profile_btn = (By.XPATH, "//*[@class='button-profile']")
+    reports_btn = (By.XPATH, "//*[@href='/reports']")
     automation_project = (By.XPATH, "(//*[@data-tooltip='automation/dont delete'])[1]//child::span")
     report_history_btn = (By.XPATH, "(//*[@class='kw kw-history'])[18]")
     delivery_date = (By.XPATH, "//*[@data-tooltip='Delivery Date']")
@@ -17,13 +18,15 @@ class Reports(Helpers):
     success_toast = (By.XPATH, "//*[@class='toast toast-success']")
 
     def navigate_to_reports_page(self):
-        self.navigate_to_url(base_url=base_url, path="/reports")
+        self.find_and_click(self.profile_btn)
+        self.find_and_click(self.reports_btn)
 
     def check_the_project_presence(self, expected_report_name="automation/dont delete"):
         actual_report = self.find(self.automation_project, get_text=True)
         assert_that(actual_report, expected_report_name)
 
     def open_report_history(self, expected_table_column="Delivery Date"):
+        self.focus_on_element(self.automation_project)
         self.find_and_click(self.report_history_btn)
         actual_table_column = self.find(self.delivery_date, get_text=True)
         assert_that(actual_table_column, expected_table_column)
@@ -46,5 +49,3 @@ class Reports(Helpers):
         assert self.assert_element_present(self.success_toast)
         self.find_and_click(self.report_history_btn)
         assert self.assert_element_present(self.sent_a_moment_ago)
-
-
