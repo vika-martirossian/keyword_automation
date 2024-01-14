@@ -1,3 +1,5 @@
+import time
+
 from selenium.webdriver.common.by import By
 
 from POM.lib.helpers import Helpers
@@ -7,7 +9,8 @@ from POM.lib.assertions import assert_that
 class Reports(Helpers):
     profile_btn = (By.XPATH, "//*[@class='button-profile']")
     reports_btn = (By.XPATH, "//*[@href='/reports']")
-    automation_project = (By.XPATH, "(//*[@data-tooltip='automation/dont delete'])[1]//child::span")
+    automation_project_txt = (By.XPATH, "(//*[@data-tooltip='automation/dont delete'])[1]//child::span")
+    automation_project_link = (By.XPATH, "(//*[@href='/projects/automation%252Fdont%2520delete'])[2]")
     report_history_btn = (By.XPATH, "(//*[@class='kw kw-history'])[18]")
     delivery_date = (By.XPATH, "//*[@data-tooltip='Delivery Date']")
     edit_report_btn = (By.XPATH, "(//*[@class='kw kw-edit-3'])[18]")
@@ -22,11 +25,12 @@ class Reports(Helpers):
         self.find_and_click(self.reports_btn)
 
     def check_the_project_presence(self, expected_report_name="automation/dont delete"):
-        actual_report = self.find(self.automation_project, get_text=True)
+        actual_report = self.find(self.automation_project_txt, get_text=True)
         assert_that(actual_report, expected_report_name)
 
     def open_report_history(self, expected_table_column="Delivery Date"):
-        self.focus_on_element(self.automation_project)
+        self.focus_on_element(self.automation_project_link)
+        time.sleep(2)
         self.find_and_click(self.report_history_btn)
         actual_table_column = self.find(self.delivery_date, get_text=True)
         assert_that(actual_table_column, expected_table_column)
