@@ -21,9 +21,17 @@ class BaseTest:
         self.reports.open_report_history()
         self.reports.close_report_history()
 
-    def open_and_close_edit_scheduled_report(self):
+    def open_edit_scheduled_report(self):
         self.reports.open_edit_report_modal()
+
+    def close_edit_scheduled_report(self):
         self.reports.close_edit_report_modal()
 
     def report_immediately_sending(self):
         self.reports.send_report_immediately()
+
+    def edit_recipient_email(self):
+        self.editreport.edit_recipient_email()
+
+    def add_a_project_to_the_filter(self):
+        self.add_a_project_to_the_filter()

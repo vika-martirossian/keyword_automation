@@ -21,11 +21,10 @@ class EditScheduledReport(Helpers):
     def edit_recipient_email(self, edited_email="automation1@mailinator.com"):
         self.find(self.recipient_email).clear()
         self.find_and_send_keys(self.recipient_email, edited_email)
-        # here should be an assertion of checking the email address
+        self.find_and_click(self.save_btn)
 
     def add_a_project_to_the_filter(self, exp_projects="automation/dont delete, (H) Travel with Booking Test"):
         self.find_and_click(self.project_filter)
         self.find_and_click(self.travel_project)
         actual_projects = self.find(self.project_filter, get_text=True)
         assert_that(actual_projects, exp_projects)
-

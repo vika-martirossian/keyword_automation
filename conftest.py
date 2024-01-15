@@ -2,6 +2,7 @@ import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
+from POM.pages.edit_scheduled_report import EditScheduledReport
 from POM.pages.reports import Reports
 from POM.pages.sign_in import SignIn
 from testing_data import test_data
@@ -38,6 +39,7 @@ def get_driver(request, get_browser):
     # Add here each page from the POM in order to initialize the driver for each one.
     request.cls.signin = SignIn(driver)
     request.cls.reports = Reports(driver)
+    request.cls.editreport = EditScheduledReport(driver)
     driver.get(test_data.base_url)
     yield driver
     driver.quit()

@@ -1,16 +1,19 @@
 import time
 
 from selenium.webdriver.common.by import By
+from selenium import webdriver
 
 from POM.lib.helpers import Helpers
 from POM.lib.assertions import assert_that
+
+driver = webdriver.Chrome()
 
 
 class Reports(Helpers):
     profile_btn = (By.XPATH, "//*[@class='button-profile']")
     reports_btn = (By.XPATH, "//*[@href='/reports']")
     automation_project_txt = (By.XPATH, "(//*[@data-tooltip='automation/dont delete'])[1]//child::span")
-    automation_project_link = (By.XPATH, "(//*[@href='/projects/automation%252Fdont%2520delete'])[2]")
+    automation_project_link = (By.XPATH, "(//*[@class='body__row'])[1]")
     report_history_btn = (By.XPATH, "(//*[@class='kw kw-history'])[18]")
     delivery_date = (By.XPATH, "//*[@data-tooltip='Delivery Date']")
     edit_report_btn = (By.XPATH, "(//*[@class='kw kw-edit-3'])[18]")
@@ -29,7 +32,8 @@ class Reports(Helpers):
         assert_that(actual_report, expected_report_name)
 
     def open_report_history(self, expected_table_column="Delivery Date"):
-        self.focus_on_element(self.automation_project_link)
+        elem = self.find(self.automation_project_link)
+        self.focus_on_element(elem)
         time.sleep(2)
         self.find_and_click(self.report_history_btn)
         actual_table_column = self.find(self.delivery_date, get_text=True)
