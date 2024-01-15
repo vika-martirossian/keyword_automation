@@ -1,4 +1,4 @@
-from selenium.common import TimeoutException
+from selenium.common import TimeoutException, StaleElementReferenceException
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as ec
 from selenium.webdriver.common.action_chains import ActionChains
@@ -56,6 +56,9 @@ class Helpers:
     def focus_on_element(self, element):
         self.actions.move_to_element(element).perform()
 
+    def focus_on_element_and_click(self, element):
+        self.actions.move_to_element(element).click().perform()
+
     def scroll_to(self, element):
         self.driver.execute_script("arguments[0].scrollIntoView();", element)
 
@@ -98,3 +101,9 @@ class Helpers:
         except TimeoutException:
             print("Element is not present within the specified timeout.")
             return False
+
+    def wait_for_invisibility(self, loc, timeout=10):
+        try:
+            WebDriverWait(self.driver, timeout).until(ec.invisibility_of_element_located(loc))
+        except StaleElementReferenceException:
+            pass
