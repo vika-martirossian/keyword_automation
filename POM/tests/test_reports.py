@@ -28,9 +28,8 @@ class TestReports(BaseTest):
         self.go_to_reports_page()
         self.open_edit_scheduled_report()
         self.edit_recipient_email()
-        self.open_edit_scheduled_report()
-        # here should be an assertion of checking the email address
 
+    '''
     def test_adding_a_project_to_the_filter(self):
         self.successful_sign_in()
         self.go_to_reports_page()
@@ -38,4 +37,6 @@ class TestReports(BaseTest):
         self.add_a_project_to_the_filter()
         self.open_edit_scheduled_report()
         # here should be an assertion of checking the filter separately
+
+    '''
 

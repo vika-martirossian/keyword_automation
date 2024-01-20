@@ -1,3 +1,6 @@
+import random
+import string
+
 from selenium.common import TimeoutException, StaleElementReferenceException
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as ec
@@ -107,3 +110,9 @@ class Helpers:
             WebDriverWait(self.driver, timeout).until(ec.invisibility_of_element_located(loc))
         except StaleElementReferenceException:
             pass
+
+    def generate_random_string(self, length):
+        characters = string.ascii_letters + string.digits
+        random_string = ''.join(random.choice(characters) for _ in range(length))
+        return random_string
+

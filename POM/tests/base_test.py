@@ -34,7 +34,10 @@ class BaseTest:
         self.reports.send_report_immediately()
 
     def edit_recipient_email(self):
+        self.reports.hover_over_the_project()
         self.editreport.edit_recipient_email()
+        self.editreport.get_default_recipient_email()
 
     def add_a_project_to_the_filter(self):
-        self.add_a_project_to_the_filter()
+        self.reports.hover_over_the_project()
+        self.reports.add_a_project_to_the_filter()
