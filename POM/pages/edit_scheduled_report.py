@@ -1,6 +1,3 @@
-import time
-import random
-
 from selenium.webdriver.common.by import By
 
 from POM.lib.helpers import Helpers
@@ -20,6 +17,8 @@ class EditScheduledReport(Helpers):
     csv_radio_btn = (By.XPATH, "(//*[@class='radio-button__content'])[2]")
     csv_label = (By.XPATH, "(//*[@class='radio-button__label'])[2]")
     save_btn = (By.XPATH, "(//*[@class='kw-button kw-btn-primary'])[2]")
+    default_frequency = ""
+    actual_freq = ""
 
     def edit_recipient_email(self):
         addition = self.generate_random_string(5)
@@ -46,8 +45,5 @@ class EditScheduledReport(Helpers):
         freq_select = self.find(self.frequency_select)
         selected_option = self.select_item(freq_select, value=2)
         self.find_and_click(selected_option)
+        actual_freq = self.find(self.frequency_drop_down, get_text=True)
         self.find_and_click(self.save_btn)
-        self.find_and_click(self.frequency_drop_down)
-
-
-

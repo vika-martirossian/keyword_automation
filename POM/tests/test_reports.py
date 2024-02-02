@@ -1,3 +1,5 @@
+import time
+
 from POM.tests.base_test import BaseTest
 
 
@@ -38,5 +40,13 @@ class TestReports(BaseTest):
         self.open_edit_scheduled_report()
         # here should be an assertion of checking the filter separately
 
-    '''
+   
 
+    def test_change_scheduled_frequency(self):
+        self.successful_sign_in()
+        self.go_to_reports_page()
+        self.change_scheduled_frequency()
+        self.open_edit_scheduled_report()
+        time.sleep(4)
+        assert self.editreport.default_frequency != self.editreport.actual_freq, "Values are matching!"
+'''

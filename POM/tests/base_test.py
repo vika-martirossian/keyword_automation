@@ -40,4 +40,8 @@ class BaseTest:
 
     def add_a_project_to_the_filter(self):
         self.reports.hover_over_the_project()
-        self.reports.add_a_project_to_the_filter()
+        self.editreport.add_a_project_to_the_filter()
+
+    def change_scheduled_frequency(self):
+        self.reports.hover_over_the_project()
+        self.editreport.change_scheduled_frequency()
